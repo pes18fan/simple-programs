@@ -34,5 +34,7 @@ int main() {
     printf("Roll number: %d\n", inf.roll);
     printf("Class: %d\n", inf.class);
 
+    fclose(fp);
+
     return 0;
 }
