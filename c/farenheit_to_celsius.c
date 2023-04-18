@@ -1,15 +1,15 @@
-// wap to convert temperature to celsius from farenheit
+// WAP to convert temperature to celsius from farenheit
 #include <stdio.h>
 
-int main() {
-    float c, f;
+int main(void) {
+	float farenheit, celsius;
 
-    printf("Enter a temperature in farenheit: ");
-    scanf("%f", &f);
+	printf("Enter temperature in Farenheit\n");
+	scanf("%f", &farenheit);
 
-    c = (f - 32) * 5/9;
+	celsius = ( 5.f / 9.f ) * ( farenheit - 32 );
 
-    printf("In Celsius it is %f\n", c);
+	printf("It is %f in Celsius", celsius);
 
-    return 0;
+	return 0;
 }
