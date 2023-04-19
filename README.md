@@ -1,3 +1,3 @@
 # c-and-web-stuff
 
-Just a bunch of simple programs in a bunch of languages.
+Some simple programs. Kept as a personal reference.
