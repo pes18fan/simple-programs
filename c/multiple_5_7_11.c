@@ -8,7 +8,7 @@ int main(void) {
 
     if (num % 5 == 0) {
         if (num % 7 == 0) {
-            if (num & 11 != 0) {
+            if (num % 11 != 0) {
                 printf("The number is a multiple of 5 and 7 but not 11.");
             } else {
                 printf("The number is divisible by 5, 7 and 11.");
