@@ -1,20 +1,22 @@
 // WAP to change the casing of a letter (uppercase to lowercase and vice versa)
 #include <stdio.h>
-#include <ctype.h>
 
 int main(void) {
     char alph;
 
-    puts("Enter a letter");
+    printf("Enter a letter\n");
     scanf("%c", &alph);
-
-    if (islower(alph)) {
-        printf("%c", toupper(alph));
-    } else if (isupper(alph)) {
-        printf("%c", tolower(alph));
+    
+    if (alph >= 65 && alph <= 91) {
+        alph += 32;
+    } else if (alph >= 97 && alph <= 122) {
+        alph -= 32;
     } else {
-        puts("Invalid letter");
+        puts("Invalid character.");
+        return 1;
     }
+
+    printf("Upper/lowercase of it is %c", alph);
 
     return 0;
 }
