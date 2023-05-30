@@ -9,7 +9,7 @@ int main(void) {
 
     for (int i = 2; i <= range; i++) {
         int is_prime = 1;
-        for (int j = 2; j < i; j++) {
+        for (int j = 2; j <= i/2; j++) {
             if (i % j == 0) {
                 is_prime = 0;
                 break;

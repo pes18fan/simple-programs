@@ -2,23 +2,23 @@
 #include <stdio.h>
 
 int main() {
-    int n1, n2, totalc = 0, i, j;
+    int n1, n2, total_primes = 0, i, j;
 
     printf("Enter the numbers between which you wish to check for primes: \n");
     scanf("%d %d", &n1, &n2);
 
     for (i = n1; i < n2; i++) {
-	int tempc = 0;
+	int factors = 0;
 
-	for (j = 1; j <= i; j++) {
-	    if (i % j == 0) tempc++;
+	for (j = 1; j <= i/2; j++) {
+	    if (i % j == 0) factors++;
 	}
 
-	if (tempc == 2) {
+	if (factors == 1) { //always 1 is a factor for primes less than or equal to n/2
 	    printf("%d is prime.\n", i);
-	    totalc++;
+	    total_primes++;
 	}
     }
 
-    printf("Total prime numbers are %d\n", totalc);
+    printf("Total prime numbers are %d\n", total_primes);
 }
