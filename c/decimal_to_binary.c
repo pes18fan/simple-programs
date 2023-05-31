@@ -1,21 +1,16 @@
 // convert a decimal number to a binary
 #include <stdio.h>
 
+
 int to_binary(int n) {
-    int bin_rev = 0, bin = 0;
+    int  bin=0,base=1,rem=0;
 
     while (n >= 1) {
-        int rem = n % 2;
-        bin_rev = ( bin_rev * 10 ) + rem;
-        n /= 2;
+        rem=n%2;
+        bin=rem*base+bin;
+        base*=10;
+        n/=2;
     }
-
-    while (bin_rev >= 1) {
-       int rem = bin_rev % 10;
-       bin = ( bin * 10 ) + rem;
-       bin_rev /= 10;
-    }
-
     return bin;
 }
 
