@@ -41,10 +41,12 @@ function sum_char_codes(n: string): number {
 
 Why is it not O(2n)? That's because you drop constants. Look at this:
 
+```
 n = 1, O(10n) = 10, O(n^2) = 1
 n = 5, O(10n) = 50, O(n^2) = 25
 n = 100, O(10n) = 1000, O(n^2) = 10000 // 10x bigger
 n = 1000, O(10n) = 10000, O(n^2) = 1000000 // 100x bigger
+```
 
 It grows disproportionately. We just need to generally know how fast
 an algorithm is, not the exact specifics, so we drop the constants.
