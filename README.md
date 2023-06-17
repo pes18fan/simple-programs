@@ -1,3 +1,4 @@
-# algos
+# dsa
 
-a bunch of algorithms and stuff
+some algos and data struct implementations, mainly serving as a reference for
+myself

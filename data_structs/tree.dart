@@ -71,6 +71,24 @@
  *
  * All traversals are O(n), since the amount of travelling to nodes doubles if
  * you double the size of the tree.
+ * 
+ * A useful thing to note is that all of these traversals implicitly use a
+ * stack. Pretty neat, huh?
+ * 
+ * These traversals I described above are known as depth first traversals. 
+ * That is because we go as deep as possible down the tree until we reach the 
+ * bottom before returning and trying the other side. There are also 
+ * breadth-first traversals, which are a bit more complicated.
+ * 
+ * ### Breadth-first traversals.
+ * 
+ * A breadth first search is the opposite of a depth first search. Instead of
+ * using a stack, we use its opposite, a queue. Using a breadth first traversal,
+ * the above poorly drawn tree would be:
+ *
+ * ```
+ * 7, 23, 3, 5, 4, 18, 21
+ * ```
  */
 class BinaryNode<T> {
   T value;
@@ -80,15 +98,31 @@ class BinaryNode<T> {
   BinaryNode(this.value, {this.left, this.right});
 }
 
+extension on List {
+  /// Checks two lists for equality.
+  /// Returns true if they are equal, false otherwise.
+  bool equals(List list) {
+    if (this.length != list.length) return false;
+
+    for (int i = 0; i < this.length; i++) {
+      if (this[i] != list[i]) return false;
+    }
+
+    return true;
+  }
+}
+
 class BinaryTree<T> {
   late final BinaryNode<T>? _root;
 
   // simple constructor using _createBinaryTree
+  // just for testing, ignore
   BinaryTree(List<dynamic> treeData) {
     _root = _createBinaryTree(treeData);
   }
 
   // create a binary tree out of a multidimensional list
+  // very spaghetti as it is just for testing, ignore
   BinaryNode<T>? _createBinaryTree(List<dynamic> treeData) {
     if (treeData.isEmpty) {
       return null;
@@ -115,26 +149,99 @@ class BinaryTree<T> {
     return path;
   }
 
+  List<T> _inOrderWalk(BinaryNode<T>? curr, List<T> path) {
+    if (curr == null) return path;
+
+    _inOrderWalk(curr.left, path);
+    path.add(curr.value);
+    _inOrderWalk(curr.right, path);
+
+    return path;
+  }
+
+  List<T> _postOrderWalk(BinaryNode<T>? curr, List<T> path) {
+    if (curr == null) return path;
+
+    _postOrderWalk(curr.left, path);
+    _postOrderWalk(curr.right, path);
+    path.add(curr.value);
+
+    return path;
+  }
+
+  // traverse the tree in various orders and return the path taken:
   List<T> preOrderTraversal() {
     return _preOrderWalk(_root, []);
   }
+
+  List<T> inOrderTraversal() {
+    return _inOrderWalk(_root, []);
+  }
+
+  List<T> postOrderTraversal() {
+    return _postOrderWalk(_root, []);
+  }
+
+  // i should probably use a queue for this but whatever
+  List<T> breadthFirstTraversal() {
+    final path = <T>[];
+    final q = <BinaryNode<T>?>[_root];
+
+    while (q.length != 0) {
+      final curr = q.removeAt(0);
+
+      // this will probably never happen but good to have this check nonetheless
+      if (curr == null) continue;
+
+      path.add(curr.value);
+
+      if (curr.left != null) q.add(curr.left);
+      if (curr.right != null) q.add(curr.right);
+    }
+
+    return path;
+  }
 }
 
-void main() {
+/* given two binary trees, find out if they are equal in both shape and 
+  structure. We can't use breadth first traversal here, we need to use depth
+  first traversal here, because it preserves the shape of the tree in its
+  path. We start traversing from the roots of each tree. */
+bool binaryTreesEqual<T>(BinaryNode<T>? a, BinaryNode<T>? b) {
+  // a few base cases
+  // both are null -> true
+  if (a == null && b == null) return true;
+
+  // one is null, the other is some value, this would mean that the path
+  // of the two traversals differs, so we return false
+  // this is a structural check
+  if (a == null || b == null) return false;
+
+  // obviously, if the values are different the trees differ.
+  // this is a value check
+  if (a.value != b.value) return false;
+
+  // we're doing a logical AND on the two recursive calls comparing the
+  // subtrees. If any one returns false we know the two trees differ, so
+  // we return false
+  return binaryTreesEqual(a.left, b.left) && binaryTreesEqual(a.right, b.right);
+}
+
+void testBinaryTree() {
   final List<dynamic> treeData = [
     20, // root value
-    [ // left subtree data
+    [
+      // left subtree data
       10,
       [
         5,
         [],
         [7, [], []]
-
       ],
       [15, [], []]
-
     ],
-    [ // right subtree data
+    [
+      // right subtree data
       50,
       [
         30,
@@ -148,6 +255,52 @@ void main() {
   final tree = BinaryTree<int>(treeData);
 
   final preOrderPath = tree.preOrderTraversal();
-  print('[ ${preOrderPath.join(', ')} ]');
-  // Expect: [20, 10, 5, 7, 15, 50, 30, 29, 45, 100]
+  assert(preOrderPath.equals([20, 10, 5, 7, 15, 50, 30, 29, 45, 100]),
+      "Got $preOrderPath");
+
+  final inOrderPath = tree.inOrderTraversal();
+  assert(inOrderPath.equals([5, 7, 10, 15, 20, 29, 30, 45, 50, 100]),
+      "Got $inOrderPath");
+
+  final postOrderPath = tree.postOrderTraversal();
+  assert(postOrderPath.equals([7, 5, 15, 10, 29, 45, 30, 100, 50, 20]),
+      "Got $postOrderPath");
+
+  final breadthFirstPath = tree.breadthFirstTraversal();
+  assert(breadthFirstPath.equals([20, 10, 50, 5, 15, 30, 100, 7, 29, 45]),
+      "Got $breadthFirstPath");
+
+  final List<dynamic> treeTwoData = [
+    20, // root value
+    [
+      // left subtree data
+      10,
+      [
+        5,
+        [],
+        [7, [], []]
+      ],
+      [15, [], []]
+    ],
+    [
+      // right subtree data
+      50,
+      [
+        30,
+        [29, [], []],
+        [45, [], []]
+      ],
+      [100, [], []]
+    ]
+  ];
+
+  final treeTwo = BinaryTree<int>(treeTwoData);
+  assert(binaryTreesEqual(tree._root, treeTwo._root) == true,
+      "Expected true, got false");
+
+  print("Tests passed for BinaryTree!");
+}
+
+void main() {
+  testBinaryTree();
 }
