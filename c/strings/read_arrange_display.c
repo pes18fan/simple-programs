@@ -1,5 +1,21 @@
 // read a bunch of words, arrange them in alphabetical order and print the
 // ordered list using functions read(), arrange() and display().
+// 1. Start
+// 2. Declare fn read(str, n)
+//  i. Read n strings into str
+// 3. Declare fn arrange(str, n)
+//  i. Declare temp[20]
+//  ii. Loop from 0 to n-1, exclusive
+//    a. Loop from i+1 to n, exclusive
+//      i. if strcmp(str[i], str[j]) > 0, swap them via strcpy
+// 4. Declare fn display(str, n)
+//  i. Print sorted strings
+// 5. Declare str[20][30], n
+// 6. Read n
+// 7. Call read(str, n)
+// 8. Call arrange(str, n)
+// 9. Call display(str, n)
+// 10. Stop
 #include <stdio.h>
 #include <string.h>
 

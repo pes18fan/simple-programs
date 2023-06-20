@@ -1,3 +1,13 @@
+// wap to count the number of characters and words in a sentence
+// 1. Start
+// 2. Declare variables sentence[100], characters = 0, words = 0
+// 3. Read sentence
+// 4. Loop from 0 while sentence[i] != '\0'
+//   i. If sentence[i] is a space, tab or newline, increment words
+//   ii. Else increment characters
+// 5. Decrement characters by 1
+// 6. Print words and characters
+// 7. Stop
 #include <stdio.h>
 #include <string.h>
 

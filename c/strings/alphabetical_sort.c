@@ -1,4 +1,13 @@
 // wap to alphabetically sort entered strings
+// 1. Start
+// 2. Declare variables n, str[20][30], temp[20]
+// 3. Read n
+// 4. Read n strings into str
+// 5. Loop from 0 to n-1, exclusive
+//  a. Loop from i+1 to n, exclusive
+//    i. if strcmp(str[i], str[j]) > 0, swap them via strcpy
+// 6. Print sorted strings
+// 7. Stop
 #include <stdio.h>
 #include <string.h>
 
