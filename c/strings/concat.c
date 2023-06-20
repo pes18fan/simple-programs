@@ -13,16 +13,15 @@
 //   v. Return result
 // 2. Declare variables a[100], b[100], len = 1, result[100]
 // 3. Read a and b
-// 4. Call concatenate(a, b) and assign it to concated
-// 5. Print concated
+// 4. Call concatenate(a, b) and assign it to result
+// 5. Print result
 // 6. Stop
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-char* concatenate(char* a, char* b) {
-    int len = 1;
-    char* result = malloc(sizeof(char) * 100);
+void concatenate(char* a, char* b, char* result) {
+    int len = 0;
 
     for (int i = 0; a[i] != '\n'; i++) {
         result[i] = a[i];
@@ -30,18 +29,15 @@ char* concatenate(char* a, char* b) {
     }
 
     for (int i = 0; b[i] != '\n'; i++) {
-        result[len - 1] = b[i];
+        result[len] = b[i];
         len++;
     }
 
     result[len] = '\0';
-
-    return result;
 }
 
 int main(void) {
-    char a[100];
-    char b[100];
+    char a[100], b[100], result[100];
 
     printf("Enter a string\n");
     fgets(a, sizeof(a), stdin);
@@ -49,11 +45,10 @@ int main(void) {
     printf("Enter another string\n");
     fgets(b, sizeof(b), stdin);
 
-    char* concated = concatenate(a, b);
+    concatenate(a, b, result);
 
     printf("Concatenated:\n");
-    printf("%s", concated);
-    free(concated);
+    printf("%s", result);
 
     return 0;
 }
