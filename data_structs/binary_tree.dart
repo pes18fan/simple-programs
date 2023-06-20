@@ -96,6 +96,11 @@ class BinaryNode<T> {
   BinaryNode<T>? right;
 
   BinaryNode(this.value, {this.left, this.right});
+
+  @override
+  String toString() {
+    return value.toString();
+  }
 }
 
 extension on List {
@@ -113,12 +118,12 @@ extension on List {
 }
 
 class BinaryTree<T> {
-  late final BinaryNode<T>? _root;
+  BinaryNode<T>? root;
 
   // simple constructor using _createBinaryTree
   // just for testing, ignore
   BinaryTree(List<dynamic> treeData) {
-    _root = _createBinaryTree(treeData);
+    root = _createBinaryTree(treeData);
   }
 
   // create a binary tree out of a multidimensional list
@@ -171,21 +176,26 @@ class BinaryTree<T> {
 
   // traverse the tree in various orders and return the path taken:
   List<T> preOrderTraversal() {
-    return _preOrderWalk(_root, []);
+    return _preOrderWalk(root, []);
   }
 
   List<T> inOrderTraversal() {
-    return _inOrderWalk(_root, []);
+    return _inOrderWalk(root, []);
   }
 
   List<T> postOrderTraversal() {
-    return _postOrderWalk(_root, []);
+    return _postOrderWalk(root, []);
+  }
+
+  // uses the pre order walk by default
+  List<T> depthFirstTraversal() {
+    return _preOrderWalk(root, []);
   }
 
   // i should probably use a queue for this but whatever
   List<T> breadthFirstTraversal() {
     final path = <T>[];
-    final q = <BinaryNode<T>?>[_root];
+    final q = <BinaryNode<T>?>[root];
 
     while (q.length != 0) {
       final curr = q.removeAt(0);
@@ -206,7 +216,7 @@ class BinaryTree<T> {
 /* given two binary trees, find out if they are equal in both shape and 
   structure. We can't use breadth first traversal here, we need to use depth
   first traversal here, because it preserves the shape of the tree in its
-  path. We start traversing from the roots of each tree. */
+  traversal path. We start traversing from the roots of each tree. */
 bool binaryTreesEqual<T>(BinaryNode<T>? a, BinaryNode<T>? b) {
   // a few base cases
   // both are null -> true
@@ -295,7 +305,7 @@ void testBinaryTree() {
   ];
 
   final treeTwo = BinaryTree<int>(treeTwoData);
-  assert(binaryTreesEqual(tree._root, treeTwo._root) == true,
+  assert(binaryTreesEqual(tree.root, treeTwo.root) == true,
       "Expected true, got false");
 
   print("Tests passed for BinaryTree!");
