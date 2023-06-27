@@ -1,4 +1,12 @@
 // find the sum of all the elements of an array using pointers
+// 1. Start
+// 2. Define an array of size 10 and a variable sum initialized to 10
+// 3. Loop from 0 to 10, exclusive:
+//   a. Read an element into arr + i
+// 4. Loop from 0 to 10, exclusive:
+//   a. Add *(arr + i) into sum
+// 5. Print sum
+// 6. Stop
 #include <stdio.h>
 
 int main(void) {

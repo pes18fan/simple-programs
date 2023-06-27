@@ -4,17 +4,16 @@
 int main() {
     char tile = 'B';
 
-    for (int i = 0; i < 8; i++) {
-        if (tile == 'W') tile = 'B';
-        else tile = 'W';	
+	for (int i = 0; i < 8; i++) {
+		if (tile == 'W') tile = 'B';
+		else tile = 'W';	
 
-	for (int j = 0; j < 8; j++) {
-	    printf("%c", tile);
+		for (int j = 0; j < 8; j++) {
+			printf("%c", tile);
 
-	    if (tile == 'W') tile = 'B';
-	    else tile = 'W';
+			if (tile == 'W') tile = 'B';
+			else tile = 'W';
+		}
+		printf("\n");
 	}
-
-	printf("\n");
-    }
 }
