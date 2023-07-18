@@ -9,21 +9,17 @@ typedef struct {
 } Complex;
 
 Complex add_cmp(Complex a, Complex b) {
-    Complex result;
-
-    result.real = a.real + b.real;
-    result.imaginary = a.imaginary + b.imaginary;
-
-    return result;
+    return (Complex){
+        a.real + b.real,
+        a.imaginary + b.imaginary
+    };
 }
 
 Complex subtract_cmp(Complex a, Complex b) {
-    Complex result;
-
-    result.real = a.real - b.real;
-    result.imaginary = a.imaginary - b.imaginary;
-
-    return result;
+    return (Complex){
+        a.real - b.real,
+        a.imaginary - b.imaginary
+    };
 }
 
 int main(void) {
