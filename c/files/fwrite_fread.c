@@ -10,7 +10,7 @@ struct Info {
 }inf;
 
 int main() {
-    fp = fopen("student.dat", "w");
+    fp = fopen("student.dat", "wb");
 
     printf("Enter the roll number: ");
     scanf("%d", &inf.roll);
@@ -24,7 +24,7 @@ int main() {
     
     fclose(fp);
 
-    fp = fopen("student.dat", "r");
+    fp = fopen("student.dat", "rb");
 
     printf("\nDetails of student are: \n\n");
 
