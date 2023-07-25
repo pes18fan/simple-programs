@@ -33,6 +33,7 @@ int main(void) {
     while (fread(&s, sizeof(Student), 1, fp) == 1) {
         if (s.marks > max) {
             max = s.marks;
+            break;
         }
     }
 
