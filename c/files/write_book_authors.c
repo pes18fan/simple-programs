@@ -41,12 +41,13 @@ int main(void) {
      
     while (fread(&author, sizeof(Author), 1, fp) == 1) {
         if (i + 1 == n) {
+            found = true;
             break;
         }
     }
     
-    if (i + 1 > n) {
-        printf("No %dth author since there are only %d authors.\n", n, i + 1);
+    if (!found) {
+        printf("No such author\n");
         return 1;
     }
 
