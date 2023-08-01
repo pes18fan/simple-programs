@@ -44,6 +44,7 @@ int main(void) {
             found = true;
             break;
         }
+        i++;
     }
     
     if (!found) {
