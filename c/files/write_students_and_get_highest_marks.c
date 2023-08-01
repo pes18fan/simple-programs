@@ -14,8 +14,9 @@ int main(void) {
         perror("Error opening file");
         return 1;
     }
-    int max = -1;
     Student s;
+    Student max;
+    max.marks = -1;
 
     for (int i = 0; i < 48; i++) {
         printf("Enter the name of student %d: ", i + 1);
@@ -31,8 +32,8 @@ int main(void) {
     rewind(fp);
 
     while (fread(&s, sizeof(Student), 1, fp) == 1) {
-        if (s.marks > max) {
-            max = s.marks;
+        if (s.marks > max.marks) {
+            max = s;
             break;
         }
     }
