@@ -32,10 +32,7 @@ int main(void) {
     rewind(fp);
 
     while (fread(&s, sizeof(Student), 1, fp) == 1) {
-        if (s.marks > max.marks) {
-            max = s;
-            break;
-        }
+        if (s.marks > max.marks) max = s;
     }
 
     printf("Student with highest marks:\n");
