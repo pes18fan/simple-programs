@@ -1,4 +1,4 @@
-# c-and-web-stuff
+# small-programs
 
-Some simple programs, mainly in C but also in some other languages.
+Some simple programs in various languages. Most are in C.
 Kept as a personal reference.
