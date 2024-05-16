@@ -17,8 +17,6 @@
 // 5. Print result
 // 6. Stop
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 void concatenate(char* a, char* b, char* result) {
     int len = 0;

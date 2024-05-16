@@ -9,7 +9,6 @@
 // 6. Print words and characters
 // 7. Stop
 #include <stdio.h>
-#include <string.h>
 
 int main(void) {
     char sentence[100];
@@ -20,13 +19,13 @@ int main(void) {
 
     for (int i = 0; sentence[i] != '\0'; i++) {
         switch (sentence[i]) {
-            case ' ':
-            case '\t':
-            case '\n':
-                words++;
-                break;
-            default:
-                characters++;
+        case ' ':
+        case '\t':
+        case '\n':
+            words++;
+            break;
+        default:
+            characters++;
         }
     }
     characters -= 1;
