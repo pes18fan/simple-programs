@@ -1,11 +1,11 @@
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 
 typedef struct {
     char name[50];
     char address[100];
     int roll;
-    unsigned int marks;
+    uint32_t marks;
 } Student;
 
 int main(void) {
@@ -32,7 +32,8 @@ int main(void) {
     rewind(fp);
 
     while (fread(&s, sizeof(Student), 1, fp) == 1) {
-        if (s.marks > max.marks) max = s;
+        if (s.marks > max.marks)
+            max = s;
     }
 
     printf("Student with highest marks:\n");
