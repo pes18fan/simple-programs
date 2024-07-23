@@ -1,9 +1,7 @@
 #include <iostream>
 #include <vector>
 
-using
-    std::cout,
-    std::vector;
+using std::cout, std::vector;
 
 // linear search is O(n) in time complexity
 bool linear_search(vector<int> haystack, int needle) {

@@ -5,9 +5,7 @@
 #include <iostream>
 #include <vector>
 
-using
-    std::cout,
-    std::vector;
+using std::cout, std::vector;
 
 /* Return a sorted vector<int>. */
 vector<int> bubble_sort(vector<int> vek) {
@@ -24,7 +22,7 @@ vector<int> bubble_sort(vector<int> vek) {
                 vek[j + 1] = tmp;
             }
         }
-    }    
+    }
 
     return vek;
 }
@@ -34,11 +32,13 @@ int main() {
 
     vek = bubble_sort(vek);
 
-    cout << "[" << "\n";
+    cout << "["
+         << "\n";
 
     for (auto item : vek) {
         cout << "\t" << item << "\n";
     }
 
-    cout << "]" << "\n";
+    cout << "]"
+         << "\n";
 }

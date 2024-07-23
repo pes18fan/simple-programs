@@ -1,13 +1,11 @@
 /* Binary search.
- * Keep halving the array and looking in those halves until the 
+ * Keep halving the array and looking in those halves until the
  * element is found. */
-#include <iostream>
 #include <cmath>
+#include <iostream>
 #include <vector>
 
-using 
-    std::cout,
-    std::vector;
+using std::cout, std::vector;
 
 /* `haystack` is the array, `lo` is where to start searching, and `hi`
  * is where to stop searching, `needle` is what we're looking for

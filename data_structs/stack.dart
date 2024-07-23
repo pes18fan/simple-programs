@@ -12,7 +12,8 @@
  *
  * tl -> A <- B <- C <- D <- hd
  *
- * The last element is the head. */
+ * The last element is the head.
+ */
 
 // a stack node.
 class Node<T> {

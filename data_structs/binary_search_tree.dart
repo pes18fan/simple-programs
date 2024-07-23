@@ -88,6 +88,16 @@ class BST {
     return _has(node.left, value);
   }
 
+  // base cases:
+  // 1. no child: delete
+  // 2. one child: set parent to point to child
+  // 3. two children: take the left hand side (smaller one), find the largest
+  //    element in it, put it where the node is
+  //    or, you could do the inverse by finding the smallest on the large side
+  int _delete(BinaryNode<int>? node, int value) {
+    throw UnimplementedError();
+  }
+
   bool has(int value) {
     return _has(root, value);
   }
@@ -96,12 +106,8 @@ class BST {
     _insert(root, value);
   }
 
-  // base cases:
-  // 1. no child: delete
-  // 2. no child: set parent to child
-  // 3. two children: ???
   int delete(int value) {
-    throw UnimplementedError();
+    return _delete(root, value);
   }
 }
 

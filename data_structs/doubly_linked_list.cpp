@@ -1,160 +1,156 @@
 #include <iostream>
-#include <exception>
 
-using
-    std::cout,
-    std::invalid_argument;
+using std::cout, std::invalid_argument;
 
-template <typename T>
-struct Node {
+template <typename T> struct Node {
     T value;
     Node<T>* prev;
     Node<T>* next;
 };
 
-template <typename T>
-class DoublyLinkedList {
-    private:
-        Node<T>* head;
-        Node<T>* tail;
+template <typename T> class DoublyLinkedList {
+  private:
+    Node<T>* head;
+    Node<T>* tail;
 
-        Node<T>* get_at(int idx) {
-            auto curr = this->head;
+    Node<T>* get_at(int idx) {
+        auto curr = this->head;
 
-            for (int i = 0; curr != nullptr && i < idx; i++) {
-                curr = curr->next;
-            }
-
-            return curr;
+        for (int i = 0; curr != nullptr && i < idx; i++) {
+            curr = curr->next;
         }
 
-        T remove_node(Node<T>* node) {
-            this->len--;
+        return curr;
+    }
 
-            if (this->len == 0) {
-                auto out = this->head == nullptr ? nullptr : &this->head->value;
-                this->head = this->tail = nullptr;
-                return *out;
-            }
+    T remove_node(Node<T>* node) {
+        this->len--;
 
-            if (node->prev != nullptr) {
-                node->prev->next = node->next;
-            }
-
-            if (node->next != nullptr) {
-                node->next->prev = node->prev;
-            }
-
-            if (node == this->head) {
-                this->head = node->next;
-            }
-            if (node == this->tail) {
-                this->tail = node->prev;
-            }
-
-            T val = node->value;
-            node->prev = node->next = nullptr;
-            delete node;
-            return val;
-        }
-    public:
-        int len;
-
-        DoublyLinkedList() {
-            this->len = 0;
-            this->head = nullptr;
-            this->tail = nullptr;
+        if (this->len == 0) {
+            auto out = this->head == nullptr ? nullptr : &this->head->value;
+            this->head = this->tail = nullptr;
+            return *out;
         }
 
-        ~DoublyLinkedList() {
-            while (this->head != nullptr) {
-                this->remove_node(this->head);
-            }
+        if (node->prev != nullptr) {
+            node->prev->next = node->next;
         }
 
-        void append(T item) {
-            auto node = new Node<T>{item};
-            this->len++;
-
-            if (this->tail == nullptr) {
-                this->head = this->tail = node;
-                return;
-            }
-
-            node->prev = this->tail;
-            this->tail->next = node;
-            this->tail = node;
+        if (node->next != nullptr) {
+            node->next->prev = node->prev;
         }
 
-        void insert_at(T item, int idx) {
-            if (idx > this->len) {
-                throw invalid_argument("Oopsie: Index too big");
-            } else if (idx == this->len) {
-                this->append(item);
-                return;
-            } else if (idx == 0) {
-                this->prepend(item);
-                return;
-            }
-
-            this->len++;
-            auto curr = this->get_at(idx);
-            auto node = new Node<T>{item};
-
-            node->next = curr;
-            node->prev = curr->prev;
-            curr->prev = node;
-
-            if (node->prev != nullptr) {
-                node->prev->next = node;
-            }
+        if (node == this->head) {
+            this->head = node->next;
+        }
+        if (node == this->tail) {
+            this->tail = node->prev;
         }
 
-        void prepend(T item) {
-            auto node = new Node<T>{item};
-            this->len++;
+        T val = node->value;
+        node->prev = node->next = nullptr;
+        delete node;
+        return val;
+    }
 
-            if (this->head == nullptr) {
-                this->head = this->tail = node;
-                return;
-            }
+  public:
+    int len;
 
-            node->next = this->head;
-            this->head->prev = node;
-            this->head = node;
+    DoublyLinkedList() {
+        this->len = 0;
+        this->head = nullptr;
+        this->tail = nullptr;
+    }
+
+    ~DoublyLinkedList() {
+        while (this->head != nullptr) {
+            this->remove_node(this->head);
+        }
+    }
+
+    void append(T item) {
+        auto node = new Node<T>{item};
+        this->len++;
+
+        if (this->tail == nullptr) {
+            this->head = this->tail = node;
+            return;
         }
 
-        T remove(T item) {
-            auto curr = this->head;
-            for (int i = 0; curr != nullptr && i < this->len; i++) {
-                if (curr->value == item) {
-                    break;
-                }
-                curr = curr->next;
-            }
+        node->prev = this->tail;
+        this->tail->next = node;
+        this->tail = node;
+    }
 
-            if (curr == nullptr) {
-                throw invalid_argument("Oopsie: Item not found");
-            }
-
-            return this->remove_node(curr);
+    void insert_at(T item, int idx) {
+        if (idx > this->len) {
+            throw invalid_argument("Oopsie: Index too big");
+        } else if (idx == this->len) {
+            this->append(item);
+            return;
+        } else if (idx == 0) {
+            this->prepend(item);
+            return;
         }
 
-        T remove_at(int idx) {
-            auto node = this->get_at(idx);
-            if (node == nullptr) {
-                throw invalid_argument("Oopsie: Index too big");
-            }
-            else return this->remove_node(node);
+        this->len++;
+        auto curr = this->get_at(idx);
+        auto node = new Node<T>{item};
+
+        node->next = curr;
+        node->prev = curr->prev;
+        curr->prev = node;
+
+        if (node->prev != nullptr) {
+            node->prev->next = node;
+        }
+    }
+
+    void prepend(T item) {
+        auto node = new Node<T>{item};
+        this->len++;
+
+        if (this->head == nullptr) {
+            this->head = this->tail = node;
+            return;
         }
 
-        T get(int idx) {
-            auto got = this->get_at(idx);
-            if (got == nullptr) {
-                throw invalid_argument("Oopsie: Index too big");
+        node->next = this->head;
+        this->head->prev = node;
+        this->head = node;
+    }
+
+    T remove(T item) {
+        auto curr = this->head;
+        for (int i = 0; curr != nullptr && i < this->len; i++) {
+            if (curr->value == item) {
+                break;
             }
-            else return got->value;
+            curr = curr->next;
         }
+
+        if (curr == nullptr) {
+            throw invalid_argument("Oopsie: Item not found");
+        }
+
+        return this->remove_node(curr);
+    }
+
+    T remove_at(int idx) {
+        auto node = this->get_at(idx);
+        if (node == nullptr) {
+            throw invalid_argument("Oopsie: Index too big");
+        } else
+            return this->remove_node(node);
+    }
+
+    T get(int idx) {
+        auto got = this->get_at(idx);
+        if (got == nullptr) {
+            throw invalid_argument("Oopsie: Index too big");
+        } else
+            return got->value;
+    }
 };
 
 int main() {
