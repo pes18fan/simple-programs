@@ -1,4 +1,3 @@
 # simple-programs
 
-Some simple programs in various languages. Most are in C.
-Kept as a personal reference.
+Many simple and not-so-simple programs. Mainly in C and C++.
