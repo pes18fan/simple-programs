@@ -22,6 +22,8 @@ So, O(V * E) would mean we check every vertex, and on every vertex we check
 every edge
 
 ## Implementation methods
+There are generally two major ways:
+
   - Adjacency matrix
   - Adjacency list
 
@@ -50,7 +52,7 @@ The adjacency list for this would be something like:
 ```
 
 Here, each of the objects represented by {} is an edge. Each edge may also
-have an associated weight field, if the graph is weighted.
+have an associated weight field along with the `to` field, if the graph is weighted.
 
 ### Adjacency Matrix
 We have a matrix, where each row and column represents a node. The cell where
