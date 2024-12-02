@@ -13,6 +13,6 @@ ori  0x81          ; a <- a | 81
 ani  0xfb          ; a <- a & fb
 mov  e, a          ; e <- a
 push d             ; [fffe] <- d, [fffd] <- e
-pop psw            ; a <- [fffe], f <- [fffd]
+pop  psw            ; a <- [fffe], f <- [fffd]
 
 hlt
