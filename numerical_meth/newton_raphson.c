@@ -4,6 +4,7 @@
 
 double f(double x) { return x * x - 4 * x - 10; }
 
+/* The derivative of f(x), necessary for this method. */
 double f_deriv(double x) { return 2 * x - 4; }
 
 double approximator(double (*f)(double x), double (*f_deriv)(double x)) {
@@ -19,10 +20,13 @@ double approximator(double (*f)(double x), double (*f_deriv)(double x)) {
         f0 = f(x0);
         f0_deriv = f_deriv(x0);
 
-        x1 = x0 - (f0 / f0_deriv);
+        x1 = x0 - (f0 / f0_deriv); // The Newton-Raphson formula
 
         printf("%d\t%lf\t%lf\n", count, x0, x1);
 
+        /* The iterations can end once the difference between the last two
+         * approximations is small enough.
+         */
         if (fabs(x1 - x0) <= E) {
             printf("\n");
             break;

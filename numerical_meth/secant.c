@@ -7,6 +7,9 @@ double f(double x) { return x * x - 4 * x - 10; }
 double approximator(double (*f)(double x)) {
     double x0, x1, x2, f0, f1;
 
+    /* Unlike bisection and false position methods, this method doesn't require
+     * x0 and x1 to have opposite signs.
+     */
     printf("Tell me two initial values\n");
     scanf("%lf %lf", &x0, &x1);
 
@@ -16,7 +19,8 @@ double approximator(double (*f)(double x)) {
     for (int count = 1;; count++) {
         f0 = f(x0);
         f1 = f(x1);
-        x2 = x1 - f(x1) * ((x1 - x0) / (f(x1) - f(x0)));
+        x2 =
+            x1 - f(x1) * ((x1 - x0) / (f(x1) - f(x0))); // Secant method formula
 
         printf("%d\t%lf\t%lf\t%lf\t%lf\t%lf\n", count, x0, x1, x2, f0, f1);
 

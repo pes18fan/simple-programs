@@ -4,6 +4,14 @@
 
 double f(double x) { return x * x - x - 2; }
 
+/* phi is recieved by simplifying f(x) = 0 to create x = phi(x). There are
+ * often multiple possible phi functions, and the condition for one to be
+ * valid for this method is: |phi(x)| < 1 for all x in the neighborhood of the
+ * root of f(x).
+ *
+ * After phi(x) is found, finding the root is exceedingly simple; just iterate
+ * with it again and again to improve the approximation on each one of them.
+ */
 double phi(double x) { return 2 / (x - 1); }
 
 int main() {

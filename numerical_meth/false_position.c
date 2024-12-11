@@ -30,7 +30,7 @@ double approximator(double (*f)(double x)) {
     printf("S.N\tx1\t\tx2\t\tx0\t\tf1\t\tf2\t\tf0\n");
 
     for (int count = 1;; count++) {
-        x0 = (x1 * f2 - x2 * f1) / (f2 - f1);
+        x0 = (x1 * f2 - x2 * f1) / (f2 - f1); // Regula falsi formula
         f0 = f(x0);
 
         f1 = f(x1);

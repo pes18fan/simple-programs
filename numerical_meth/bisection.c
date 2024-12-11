@@ -33,13 +33,17 @@ double approximator(double (*f)(double x)) {
         f1 = f(x1);
         f2 = f(x2);
 
-        x0 = (x1 + x2) / 2;
+        x0 = (x1 + x2) / 2; // Midpoint formula
         f0 = f(x0);
 
         printf("%d\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n", count, x1, x2, x0, f1, f2,
                f0);
 
+        /* If f0 has the same sign as f1, x1 is now x0
+         * Similar for f2 and f0
+         */
         if (f0 == 0) {
+            // Instantly found the root
             printf("\n");
             break;
         } else if (f1 * f0 > 0) {
@@ -48,6 +52,9 @@ double approximator(double (*f)(double x)) {
             x2 = x0;
         }
 
+        /* The difference between the two sides of the interval should be
+         * small enough.
+         */
         if (fabs(x2 - x1) <= E) {
             printf("\n");
             break;
