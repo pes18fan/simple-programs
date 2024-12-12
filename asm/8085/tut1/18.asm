@@ -29,3 +29,4 @@ last:
     mov a, e        ; a <- e
     out 02h         ; show carry
     mov m, a        ; store carry
+    hlt
