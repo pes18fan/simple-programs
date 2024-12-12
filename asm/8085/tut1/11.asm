@@ -7,16 +7,16 @@ mvi c, 0Ah          ; c <- 0A, counter
 
 loop:
     mov a, m        ; a <- [hl]
-    cmp 71h         ; a - 70h
+    cpi 71h         ; a - 70h
     jc setunset     ; condition fail
-    cmp A0h         ; a - 70h
+    cpi A0h         ; a - 70h
     jnc setunset    ; condition fail
 
 swap:
     ani 48h         ; a <- a & 48h, isolate D6 and D3
-    cmp 00h         ; a - 00
+    cpi 00h         ; a - 00
     jz loopctl      ; if a == 00, D6 and D3 are both zero, no need to swap
-    cmp 48h         ; a - 48
+    cpi 48h         ; a - 48
     jz loopctl      ; if a == 48, D6 and D3 are both set, no need to swap
     mov a, m        ; a <- [hl]
     xri 48h         ; a <- a xor 48, toggles the unequal D6 and D3
