@@ -18,7 +18,7 @@ addcarry:
 
 loopctl:
     inx h
-    mov a, 00h      ; a <- 00
+    mvi a, 00h      ; a <- 00
     cmp m           ; a - [hl]
     jnz loop
 
