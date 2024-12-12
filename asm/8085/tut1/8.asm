@@ -13,5 +13,5 @@ even:
 
 odd:
     mvi a, 0FFh     ; a <- FF
-    stax 2050h
+    sta 2050h
     hlt
