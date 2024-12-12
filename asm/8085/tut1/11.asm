@@ -9,7 +9,7 @@ loop:
     mov a, m        ; a <- [hl]
     cpi 71h         ; a - 70h
     jc setunset     ; condition fail
-    cpi A0h         ; a - 70h
+    cpi A0h         ; a - A0h
     jnc setunset    ; condition fail
 
 swap:
