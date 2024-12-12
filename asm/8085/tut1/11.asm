@@ -7,7 +7,7 @@ mvi c, 0Ah          ; c <- 0A, counter
 
 loop:
     mov a, m        ; a <- [hl]
-    cpi 71h         ; a - 70h
+    cpi 71h         ; a - 71h
     jc setunset     ; condition fail
     cpi A0h         ; a - A0h
     jnc setunset    ; condition fail
