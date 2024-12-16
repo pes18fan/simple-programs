@@ -14,7 +14,7 @@ double f(double x) { return x * x - x - 2; }
  */
 double phi(double x) { return 2 / (x - 1); }
 
-int main() {
+double approximator(double (*f)(double x), double (*phi)(double x)) {
     double x1, x0;
 
     printf("Provide an initial approximation\n");
@@ -37,5 +37,7 @@ int main() {
         x0 = x1;
     }
 
-    printf("Approximation is %lf", x1);
+    return x1;
 }
+
+int main() { printf("Approximation is %lf", approximator(f, phi)); }

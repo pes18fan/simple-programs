@@ -4,6 +4,8 @@
 
 double f(double x) { return x * x - 4 * x - 10; }
 
+double g(double x) { return 4 * sin(x) - exp(x); }
+
 double approximator(double (*f)(double x)) {
     double x0, x1, x2, f0, f1;
 
@@ -22,7 +24,8 @@ double approximator(double (*f)(double x)) {
         x2 =
             x1 - f(x1) * ((x1 - x0) / (f(x1) - f(x0))); // Secant method formula
 
-        printf("%d\t%lf\t%lf\t%lf\t%lf\t%lf\n", count, x0, x1, x2, f0, f1);
+        printf("%d\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n", count, x0, x1, x2, f0, f1,
+               f(x2));
 
         x0 = x1;
         x1 = x2;
@@ -33,7 +36,10 @@ double approximator(double (*f)(double x)) {
         }
     }
 
-    return x0;
+    return x2;
 }
 
-int main() { printf("The approximation is %lf", approximator(f)); }
+int main() {
+    printf("The approximation for 1a is %lf\n\n", approximator(f));
+    printf("The approximation for 1b is %lf", approximator(g));
+}
