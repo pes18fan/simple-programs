@@ -4,3 +4,5 @@ you need to link the math library from `libc` using this command:
 ```bash
 gcc program.c -o output -lm
 ```
+
+Note that this is not necessary on Windows.
